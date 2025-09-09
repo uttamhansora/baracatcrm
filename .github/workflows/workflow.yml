@@ -1,0 +1,42 @@
+name: Deploy CodeIgniter to cPanel
+
+on:
+  push:
+    branches:
+      - main   # change if you use another branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Install PHP (if you need to run composer install)
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      # Install dependencies (if your CodeIgniter project uses composer)
+      - name: Install dependencies
+        run: |
+          if [ -f composer.json ]; then
+            composer install --no-dev --optimize-autoloader
+          fi
+
+      # Deploy to cPanel via FTP
+      - name: 📂 Sync files to cPanel
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.CPANEL_FTP_SERVER }}
+          username: ${{ secrets.CPANEL_FTP_USERNAME }}
+          password: ${{ secrets.CPANEL_FTP_PASSWORD }}
+          server-dir: /   # change if your CodeIgniter root is different
+          local-dir: ./               # code from repo
+          exclude: |
+            **/.git*
+            **/.github*
+            **/node_modules/*
+            **/tests/*
