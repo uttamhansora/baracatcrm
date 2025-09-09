@@ -10,17 +10,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Get latest code
         uses: actions/checkout@v3
 
-      # Deploy to cPanel via FTP
-      - name: 📂 Sync files to cPanel
+      - name: 📂 Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.CPANEL_FTP_SERVER }}
           username: ${{ secrets.CPANEL_FTP_USERNAME }}
           password: ${{ secrets.CPANEL_FTP_PASSWORD }}
-          server-dir: /   # change if your CodeIgniter root is different
-          local-dir: ./               # code from repo
+          server-dir: /  # adjust to your CodeIgniter root
           exclude: |
             **/.git*
             **/.github*
