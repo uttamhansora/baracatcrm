@@ -9,6 +9,7 @@
             <?= form_open($this->uri->uri_string()); ?>
             <div class="panel_s">
                 <div class="panel-body">
+                    
                     <?php $value = (isset($announcement) ? $announcement->name : ''); ?>
                     <?= render_input('name', 'announcement_name', $value); ?>
                     <p class="bold">
