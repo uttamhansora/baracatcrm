@@ -17,4 +17,4 @@ jobs:
           server: 50.63.177.140
           username: newbarkat1@rorbits.com
           password: UtQx,_bqU=xt
-          server-dir: public_html/dev/barkat
+          server-dir: public_html/dev/barkat/
