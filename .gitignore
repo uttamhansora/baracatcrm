@@ -47,4 +47,3 @@ package-lock.log
 .env
 composer.lock
 
-/application/vendor
