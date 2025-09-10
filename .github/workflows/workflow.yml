@@ -14,7 +14,7 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
-          server: ${{ secrets.CPANEL_FTP_SERVER }}  50.63.177.140
-          username: ${{ secrets.CPANEL_FTP_USERNAME }} newbarkat1@rorbits.com
-          password: ${{ secrets.CPANEL_FTP_PASSWORD }} UtQx,_bqU=xt
-          server-dir: /
+          server: 50.63.177.140
+          username: newbarkat1@rorbits.com
+          password: UtQx,_bqU=xt
+          server-dir: public_html/dev/barkat/
