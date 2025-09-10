@@ -48,3 +48,4 @@ package-lock.log
 composer.lock
 
 /application/vendor
+/.github/workflows/workflow.yml
