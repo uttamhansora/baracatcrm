@@ -10,7 +10,6 @@ if (staff_can('delete', 'items')) {
 
 $aColumns = array_merge($aColumns, [
     'description',
-    'long_description',
     db_prefix() . 'items.rate as rate',
     't1.taxrate as taxrate_1',
     't2.taxrate as taxrate_2',
@@ -79,7 +78,7 @@ foreach ($rResult as $aRow) {
 
     $row[] = $descriptionOutput;
 
-    $row[] = e($aRow['long_description']);
+
 
     $row[] = '<span class="tw-font-medium">' . e(app_format_money($aRow['rate'], get_base_currency())) . '</span>';
 

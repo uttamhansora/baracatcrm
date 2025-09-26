@@ -17,7 +17,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 * environments.
 *
 */
-define('APP_BASE_URL', 'https://www.rorbits.com/dev/barkat/');
+define('APP_BASE_URL', 'http://localhost/baract/baracatcrm/');
 
 /*
 * --------------------------------------------------------------------------
@@ -43,12 +43,12 @@ define('APP_DB_HOSTNAME', 'localhost');
 /**
  * The username used to connect to the database
  */
-define('APP_DB_USERNAME', 'barkat_us');
+define('APP_DB_USERNAME', 'root');
 
 /**
  * The password used to connect to the database
  */
-define('APP_DB_PASSWORD', '7m$ehptfen=S');
+define('APP_DB_PASSWORD', '');
 
 /**
  * The name of the database you want to connect to

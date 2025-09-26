@@ -18,6 +18,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 function data_tables_init($aColumns, $sIndexColumn, $sTable, $join = [], $where = [], $additionalSelect = [], $sGroupBy = '', $searchAs = [])
 {
+    // dd($aColumns,$sTable);
+    if($sTable=='tblitems'){
+        unset($aColumns[array_search('long_description', $aColumns)]);
+    }
     $CI   = &get_instance();
     $data = $CI->input->post();
 

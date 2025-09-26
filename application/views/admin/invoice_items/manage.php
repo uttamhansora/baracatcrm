@@ -77,8 +77,7 @@
             'name'     => '<span class="hide"> - </span><div class="checkbox mass_select_all_wrap"><input type="checkbox" id="mass_select_all" data-to-table="invoice-items"><label></label></div>',
             'th_attrs' => ['class' => (staff_can('delete', 'items') ? '' : 'not_visible')],
         ],
-        _l('invoice_items_list_description'),
-        _l('invoice_item_long_description'),
+        _l('invoice_item_add_edit_description'),
         _l('invoice_items_list_rate'),
         _l('tax_1'),
         _l('tax_2'),
@@ -204,9 +203,7 @@ render_datatable($table_data, 'invoice-items'); ?>
             $('input[name="itemid"]').val(id);
             requestGetJSON('invoice_items/get_item_by_id/' + id).done(function(response) {
                 $itemModal.find('input[name="description"]').val(response.description);
-                $itemModal.find('textarea[name="long_description"]').val(response.long_description
-                    .replace(
-                        /(<|<)br\s*\/*(>|>)/g, " "));
+                
                 $itemModal.find('input[name="rate"]').val(response.rate);
                 $itemModal.find('input[name="unit"]').val(response.unit);
                 $('select[name="tax"]').selectpicker('val', response.taxid).change();

@@ -24,7 +24,7 @@
                         <?= render_textarea('long_description', 'invoice_item_long_description'); ?>
                         <div class="form-group">
                             <label for="rate" class="control-label">
-                                <?= _l('invoice_item_add_edit_rate_currency', e($base_currency->name) . ' <small>(' . _l('base_currency_string') . ')</small>'); ?></label>
+                                <?= _l('invoice_item_add_edit_rate_currency', 'INR' . ' <small>(' . _l('base_currency_string') . ')</small>'); ?></label>
                             <input type="number" id="rate" name="rate" class="form-control" value="">
                         </div>
                         <?php
@@ -45,7 +45,7 @@
 ?>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label class="control-label"
                                         for="tax"><?= _l('tax_1'); ?></label>
                                     <select class="selectpicker display-block" data-width="100%" name="tax"
@@ -59,7 +59,9 @@
                                         </option>
                                         <?php } ?>
                                     </select>
-                                </div>
+                                </div> -->
+                        <?= render_input('tax', 'invoice_items_list_hsn'); ?>
+
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -81,6 +83,8 @@
                         </div>
                         <div class="clearfix mbot15"></div>
                         <?= render_input('unit', 'unit'); ?>
+                        <?= render_input('delivery_days', 'delivery_days'); ?>
+
                         <div id="custom_fields_items">
                             <?= render_custom_fields('items'); ?>
                         </div>

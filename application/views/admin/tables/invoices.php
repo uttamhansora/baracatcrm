@@ -79,8 +79,19 @@ return App_table::find('invoices')
         ]);
         $output  = $result['output'];
         $rResult = $result['rResult'];
-
+        
         foreach ($rResult as $aRow) {
+            // dd($aRow);
+           $CI =& get_instance();
+
+// Load database (if not autoloaded)
+$CI->load->database();
+
+// Example: fetch a single record from tblitemable
+$rel_id = $aRow['id']; // Replace with dynamic value if needed
+$query  = $CI->db->get_where('tblitemable', ['rel_id' => $rel_id], 1);
+$item   = $query->row();
+
             $formattedNumber = format_invoice_number($aRow['id']);
 
             if(empty($aRow['formatted_number']) || $formattedNumber !== $aRow['formatted_number']) {
@@ -111,24 +122,30 @@ return App_table::find('invoices')
             $numberOutput .= '</div>';
 
             $row[] = $numberOutput;
+            $row[] = e(_d($aRow['date']));
 
-            $row[] = '<span class="tw-font-medium">' . e(app_format_money($aRow['total'], $aRow['currency_name'])) . '</span>';
+            $row[] = '<span class="tw-font-medium">' . $item->description . '</span>';
 
-            $row[] = '<span class="tw-font-medium">' . e(app_format_money($aRow['total_tax'], $aRow['currency_name'])) . '</span>';
+            $row[] = '<span class="tw-font-medium">' .  $item->long_description . '</span>';
 
             $row[] = e($aRow['year']);
 
-            $row[] = e(_d($aRow['date']));
+         
+
+            
 
             if (empty($aRow['deleted_customer_name'])) {
                 $row[] = '<a href="' . admin_url('clients/client/' . $aRow['clientid']) . '">' . e($aRow['company']) . '</a>';
             } else {
                 $row[] = e($aRow['deleted_customer_name']);
             }
+   $row[] = e($aRow['total_tax']);
 
-            $row[] = '<a href="' . admin_url('projects/view/' . $aRow['project_id']) . '">' . e($aRow['project_name']) . '</a>';
+            $row[] = e($aRow['total']);
 
-            $row[] = render_tags($aRow['tags']);
+            // $row[] = '<a href="' . admin_url('projects/view/' . $aRow['project_id']) . '">' . e($aRow['project_name']) . '</a>';
+
+            // $row[] = render_tags($aRow['tags']);
 
             $row[] = e(_d($aRow['duedate']));
 
@@ -145,7 +162,7 @@ return App_table::find('invoices')
 
             $output['aaData'][] = $row;
         }
-
+        // dd($output);
         return $output;
     })->setRules([
         App_table_filter::new('number', 'NumberRule')->label(_l('invoice_add_edit_number')),

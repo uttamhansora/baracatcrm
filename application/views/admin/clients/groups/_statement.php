@@ -4,6 +4,7 @@
         <h4 class="tw-my-0 tw-font-semibold"><?php echo _l('account_summary'); ?></h4>
         <p class="text-muted"><?php echo e(_l('statement_from_to', [$from, $to])); ?></p>
         <hr />
+       
         <table class="table statement-account-summary">
             <tbody>
                 <tr>

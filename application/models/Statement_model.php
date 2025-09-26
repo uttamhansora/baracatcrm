@@ -230,7 +230,7 @@ class Statement_model extends App_Model
         }
 
         $result['currency'] = $currency;
-
+        // dd($result);
         return hooks()->apply_filters('statement', $result);
     }
 
